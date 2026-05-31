@@ -10,8 +10,8 @@ class Conexion:
             conexion = mysql.connector.connect(
                 host="localhost",
                 user="root",
-                password="1234",
-                database="rpg_manager"
+                password="123456",
+                database="parcial"
             )
 
             print("Conexion exitosa")

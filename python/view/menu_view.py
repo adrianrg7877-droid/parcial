@@ -1,4 +1,4 @@
-class MenuView:
+class menuview:
 
     # Mostrar menú
     def mostrar_menu(self):
@@ -27,6 +27,13 @@ class MenuView:
     def pedir_nivel(self):
 
         return int(input("Ingrese nivel: "))
+
+    # Pedir clase
+    def pedir_clase(self):
+
+        return int(
+            input("Seleccione clase: ")
+        )
 
     # Mostrar mensaje
     def mostrar_mensaje(self, mensaje):

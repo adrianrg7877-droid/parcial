@@ -1,6 +1,8 @@
 from db.conexion import Conexion
 
 from model.guerrero import Guerrero
+from model.mago import Mago
+from model.arquero import Arquero
 
 class PersonajeDAO:
 
@@ -17,22 +19,23 @@ class PersonajeDAO:
 
         try:
 
-            con =
-            self.conexion.conectar()
+            con = self.conexion.conectar()
 
             cursor = con.cursor()
 
             sql = """
             INSERT INTO personaje(
             nombre,
-            nivel
+            nivel,
+            clase
             )
-            VALUES(%s,%s)
+            VALUES(%s,%s,%s)
             """
 
             valores = (
                 personaje.nombre,
-                personaje.nivel
+                personaje.nivel,
+                personaje.__class__.__name__
             )
 
             cursor.execute(sql, valores)
@@ -50,8 +53,7 @@ class PersonajeDAO:
 
         try:
 
-            con =
-            self.conexion.conectar()
+            con = self.conexion.conectar()
 
             cursor = con.cursor()
 
@@ -59,16 +61,35 @@ class PersonajeDAO:
 
             cursor.execute(sql)
 
-            resultados =
-            cursor.fetchall()
+            resultados = cursor.fetchall()
 
             for fila in resultados:
 
-                personaje = Guerrero(
-                    fila[0],
-                    fila[1],
-                    fila[2]
-                )
+                clase = fila[3]
+
+                if clase == "Guerrero":
+
+                    personaje = Guerrero(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
+
+                elif clase == "Mago":
+
+                    personaje = Mago(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
+
+                else:
+
+                    personaje = Arquero(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
 
                 lista.append(personaje)
 
@@ -88,8 +109,7 @@ class PersonajeDAO:
 
         try:
 
-            con =
-            self.conexion.conectar()
+            con = self.conexion.conectar()
 
             cursor = con.cursor()
 
@@ -104,11 +124,31 @@ class PersonajeDAO:
 
             if fila:
 
-                personaje = Guerrero(
-                    fila[0],
-                    fila[1],
-                    fila[2]
-                )
+                clase = fila[3]
+
+                if clase == "Guerrero":
+
+                    personaje = Guerrero(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
+
+                elif clase == "Mago":
+
+                    personaje = Mago(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
+
+                else:
+
+                    personaje = Arquero(
+                        fila[0],
+                        fila[1],
+                        fila[2]
+                    )
 
         except Exception as e:
 
@@ -125,8 +165,7 @@ class PersonajeDAO:
 
         try:
 
-            con =
-            self.conexion.conectar()
+            con = self.conexion.conectar()
 
             cursor = con.cursor()
 
@@ -155,8 +194,7 @@ class PersonajeDAO:
 
         try:
 
-            con =
-            self.conexion.conectar()
+            con = self.conexion.conectar()
 
             cursor = con.cursor()
 

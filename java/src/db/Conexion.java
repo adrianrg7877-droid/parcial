@@ -2,36 +2,33 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
 
-    // datos conexión
     private String url =
-            "jdbc:mysql://localhost:3306/rpg_manager";
+            "jdbc:mysql://localhost:3306/parcial";
 
-    private String usuario = "root";
+    private String usuario =
+            "root";
 
-    private String password = "1234";
+    private String password =
+            "123456";
 
-    // método conectar
     public Connection conectar() {
 
         Connection conexion = null;
 
-        try{
+        try {
 
-            // crear conexión
-            conexion = DriverManager.getConnection(
-                    url,
-                    usuario,
-                    password
-            );
+            conexion =
+                    DriverManager.getConnection(
+                            url,
+                            usuario,
+                            password
+                    );
 
-            System.out.println(
-                    "Conexion exitosa"
-            );
-
-        }catch(Exception e){
+        } catch (SQLException e) {
 
             System.out.println(
                     "Error de conexion"
