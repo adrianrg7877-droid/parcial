@@ -2,6 +2,8 @@ package db;
 
 import model.Personaje;
 import model.Guerrero;
+import model.Mago;
+import model.Arquero;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -79,12 +81,30 @@ public class PersonajeDAO {
 
             while(rs.next()){
 
-                Personaje p =
-                        new Guerrero(
-                                rs.getInt("id"),
-                                rs.getString("nombre"),
-                                rs.getInt("nivel")
-                        );
+                String clase =
+                        rs.getString("clase");
+
+                Personaje p;
+
+                if(clase.equals("Guerrero")){
+                    p = new Guerrero(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }else if(clase.equals("Mago")){
+                    p = new Mago(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }else{
+                    p = new Arquero(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }
 
                 lista.add(p);
             }
@@ -125,12 +145,28 @@ public class PersonajeDAO {
 
             if(rs.next()){
 
-                personaje =
-                        new Guerrero(
-                                rs.getInt("id"),
-                                rs.getString("nombre"),
-                                rs.getInt("nivel")
-                        );
+                String clase =
+                        rs.getString("clase");
+
+                if(clase.equals("Guerrero")){
+                    personaje = new Guerrero(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }else if(clase.equals("Mago")){
+                    personaje = new Mago(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }else{
+                    personaje = new Arquero(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getInt("nivel")
+                    );
+                }
             }
 
         }catch(Exception e){

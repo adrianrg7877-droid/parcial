@@ -91,8 +91,21 @@ public class Main {
                 if(personaje != null){
 
                     System.out.println(
-                            personaje.getNombre()
+                            "ID: "
+                            + personaje.getId()
                     );
+
+                    System.out.println(
+                            "Nombre: "
+                            + personaje.getNombre()
+                    );
+
+                    System.out.println(
+                            "Nivel: "
+                            + personaje.getNivel()
+                    );
+
+                    personaje.habilidadEspecial();
 
                 }else{
 
