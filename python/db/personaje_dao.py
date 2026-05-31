@@ -33,9 +33,9 @@ class PersonajeDAO:
             """
 
             valores = (
-                personaje.nombre,
-                personaje.nivel,
-                personaje.__class__.__name__
+            personaje.nombre,
+            personaje.nivel,
+            personaje.__class__.__name__
             )
 
             cursor.execute(sql, valores)
@@ -69,30 +69,29 @@ class PersonajeDAO:
 
                 if clase == "Guerrero":
 
-                    personaje = Guerrero(
-                        fila[0],
-                        fila[1],
-                        fila[2]
-                    )
+                     personaje = Guerrero(
+            fila[0],
+            fila[1],
+            fila[2]
+        )
 
                 elif clase == "Mago":
 
                     personaje = Mago(
-                        fila[0],
-                        fila[1],
-                        fila[2]
+                      fila[0],
+                      fila[1],
+                      fila[2]
                     )
 
                 else:
 
-                    personaje = Arquero(
-                        fila[0],
-                        fila[1],
-                        fila[2]
+                     personaje = Arquero(
+                     fila[0],
+                     fila[1],
+                     fila[2]
                     )
 
                 lista.append(personaje)
-
         except Exception as e:
 
             print(e)
@@ -124,31 +123,11 @@ class PersonajeDAO:
 
             if fila:
 
-                clase = fila[3]
-
-                if clase == "Guerrero":
-
-                    personaje = Guerrero(
-                        fila[0],
-                        fila[1],
-                        fila[2]
-                    )
-
-                elif clase == "Mago":
-
-                    personaje = Mago(
-                        fila[0],
-                        fila[1],
-                        fila[2]
-                    )
-
-                else:
-
-                    personaje = Arquero(
-                        fila[0],
-                        fila[1],
-                        fila[2]
-                    )
+                personaje = Guerrero(
+                    fila[0],
+                    fila[1],
+                    fila[2]
+                )
 
         except Exception as e:
 
@@ -199,14 +178,18 @@ class PersonajeDAO:
             cursor = con.cursor()
 
             sql = """
+            DELETE FROM inventario
+            WHERE id_personaje=%s
+            """
+
+            cursor.execute(sql, (id,))
+
+            sql = """
             DELETE FROM personaje
             WHERE id=%s
             """
 
-            cursor.execute(
-                sql,
-                (id,)
-            )
+            cursor.execute(sql, (id,))
 
             con.commit()
 
